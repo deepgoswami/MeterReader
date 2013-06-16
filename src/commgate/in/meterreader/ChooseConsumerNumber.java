@@ -34,8 +34,7 @@ public class ChooseConsumerNumber extends Activity {
 		/*Spinner spnrSubdivsn = (Spinner) findViewById(R.id.spinner1);
 		Spinner spnrSection = (Spinner) findViewById(R.id.spinner01);*/
 		temp = getValuesFromFile();
-		Log.i(TAG, "SDO_CD =" + temp[0]);
-		Log.i(TAG, "BINDER =" + temp[1]);
+		
 		TextView tv = (TextView) findViewById(R.id.subDivisionTxt);
 		tv.setText(temp[0]);
 		tv = (TextView) findViewById(R.id.binderTxt);
@@ -106,17 +105,17 @@ public class ChooseConsumerNumber extends Activity {
 			
 			StringTokenizer st = new StringTokenizer(temp, ",\n");
 			int i = 0;
-			Log.i(TAG, "here3");
+			
 			while (st.hasMoreElements())
 			{
 				temp2[i] = st.nextToken();
 				
 				i++;
 			}
-			Log.i(TAG, "here5");
+			
 			theString[0] = temp2[0];
 			theString[1] = temp2[1];
-			Log.i(TAG, "here3: " + theString[0] + " " + theString[1] );
+			
 		}
 		catch (IOException e)
 		{

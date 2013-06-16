@@ -1,6 +1,7 @@
 package commgate.in.meterreader;
 
 import java.text.DecimalFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -111,11 +112,11 @@ public class ShowBill extends Activity
 		
 		Intent fromPrevious = getIntent();
 		AccountNum = fromPrevious.getStringExtra("AccountNumber");
-		Log.d(TAG, "AccountNumber = " + AccountNum);
+		
 		
 		String query = "ACC_NO =" + "\'" + AccountNum + "\'";
-		Log.d(TAG, "query is: " + query);
-		//String query = "CONS_REF = \'2112016754\'";
+		
+		
 		String temp = null;
 		
 		// run a db query with Consumer Reference as key
@@ -217,9 +218,27 @@ public class ShowBill extends Activity
 		theTextView.setText("Bijipur");
 		
 		theTextView = (TextView) findViewById(R.id.newACTxt);
-		theTextView.setText(new_ac_no);
+		if (sdoCd.length() == 3)
+			sdoCd = "0" + sdoCd;
+		if (sdoCd.length() == 2)
+			sdoCd = "00" + sdoCd;
+		if (binder.length() == 3)
+			binder = "0" + binder;
+		if (binder.length() == 2)
+			binder = "00" + binder;
+		if (acc_no.length() == 1)
+			acc_no = "000" + acc_no;
+		if (acc_no.length() == 3)
+			acc_no = "0" + acc_no;
+		if (acc_no.length() == 2)
+			acc_no = "00" + acc_no;
+		if (acc_no.length() == 1)
+			acc_no = "000" + acc_no;
+		theTextView.setText(sdoCd + binder + acc_no );
+		
 		
 		theTextView = (TextView) findViewById(R.id.oldAcNumTxt);
+		Log.d(TAG, "Old AC Num " + old_ac_no);
 		theTextView.setText(old_ac_no);
 		
 		theTextView = (TextView) findViewById(R.id.billPeriodTxt);
@@ -333,9 +352,119 @@ public class ShowBill extends Activity
 		theTextView = (TextView) findViewById(R.id.rcptAmountText);
 		theTextView.setText(String.valueOf(df.format(rcptAmt1)));
 		
+		theCursor.close();
 		
 		// handle the save and print button click
 		Button btnSave = (Button) findViewById(R.id.btnBillSave);
+		btnSave.setOnClickListener(new OnClickListener()
+		{
+
+			@Override
+			public void onClick(View view) 
+			{
+				OutputDataBean odb = new OutputDataBean(getApplicationContext());
+				Log.d(TAG, "OnClick");
+				odb.setCONS_REF(consRef);
+				odb.setSDO_CD(sdoCd);
+				odb.setBINDER(binder);
+				odb.setACC_NO(acc_no);
+				odb.setMETERNO(meterNo);
+				
+				odb.setMTRINSTL_DATE(null);
+				odb.setMETERTYPE(null);
+				odb.setMF(String.valueOf(mf));
+				odb.setINITIAL_RED(String.valueOf(ilrdg));
+				odb.setFINAL_RED_OLDMETER(String.valueOf(flrdg));
+				
+				odb.setOLDMETER_STAT(null);
+				odb.setCSTS_CD(cstscd);
+				odb.setCUR_METER_STAT("null");
+				odb.setCURRRDG(String.valueOf(currRdng));
+				odb.setCUR_RED_DT(getDate());
+				
+				odb.setBILLING_DEMAND(null);
+				odb.setNEW_TRF_CD(null);
+				odb.setBILL_UNITS(String.valueOf(billUnits));
+				odb.setENGCHG(String.valueOf(energyCharge));
+				odb.setFIXCHG(String.valueOf(df.format(fixChg)));
+				
+				odb.setMETERRENT(String.valueOf(df.format(meterRent)));
+				odb.setED(String.valueOf(df.format(elecDuty)));
+				odb.setNEWBD(String.valueOf(df.format(energyCharge + fixChg + adjustable_bd)));
+				odb.setNEWED(String.valueOf(df.format(elecDuty + adjustable_ed)));
+				odb.setNEWDPS(String.valueOf(df.format(currentSurcharge + adjustable_dps)));
+				
+				odb.setNEWOTH(null);
+				odb.setREFBLUNITS(null);
+				odb.setREFBLBD(null);
+				odb.setREFBLED(null);
+				odb.setREFBLDPS(null);
+				
+				odb.setREFDEDUNITS(null);
+				odb.setREFDEDBD(null);
+				odb.setREFDEDED(null);
+				odb.setREFDEDDPS(null);
+				odb.setREB_OFF(String.valueOf(df.format(rebate)));
+				
+				odb.setNETBEFDUEDT(String.valueOf(df.format(byDueAmt)));
+				odb.setNETAFTDUEDT(String.valueOf(df.format(afterDueAmt)));
+				odb.setBILLBASIS("A");
+				odb.setNOOFMONTHS(null);
+				odb.setREB_DT(null);
+				
+				odb.setDUE_DATE(null);
+				odb.setISSUE_DT(getDate());
+				odb.setBILLPERIOD(null);
+				odb.setBILLSERIALNO(null);
+				odb.setOLDCSTS_CD(null);
+				
+				odb.setBILL_MTH(getDate());
+				odb.setREMARKS(null);
+				odb.setMACHINE_SRL_NO(null);
+				odb.setMTR_READER_ID(null);
+				odb.setMTR_READER_NAME(null);
+				
+				odb.setREB_OYT(null);
+				odb.setREB_RTSWHT(null);
+				odb.setDOM_SPLREB(null);
+				odb.setENGCHG_OLDTRF(null);
+				odb.setFIXCHG_OLDTRF(null);
+				
+				odb.setED_OLDTRF(null);
+				odb.setNEWBD_OLDTRF(null);
+				odb.setNEWED_OLDTRF(null);
+				odb.setNEWDPS_OLDTRF(null);
+				odb.setNEWOTH_OLDTRF(null);
+				
+				odb.setREFBLBD_OLDTRF(null);
+				odb.setREFBLED_OLDTRF(null);
+				odb.setREFBLDPS_OLDTRF(null);
+				odb.setREFDEDBD_OLDTRF(null);
+				odb.setREFDEDED_OLDTRF(null);
+				
+				odb.setREFDEDDPS_OLDTRF(null);
+				odb.setREB_OFF_OLDTRF(null);
+				odb.setNETBEFDUEDT_OLDTRF(null);
+				odb.setNETAFTDUEDT_OLDTRF(null);
+				odb.setREB_HOSTEL(null);
+				
+				odb.setMAX_DEMD(null);
+				odb.setRECONN_CHARGE(null);
+				odb.setPathToPhoto(null);
+				
+				
+				odb.setBILL_MTH(String.valueOf(billMonth));
+				
+				
+				odb.writeToDB();
+				
+				Intent intent = new Intent(getApplicationContext(), ChooseConsumerNumber.class);
+				startActivity(intent);
+			}
+			
+		}
+		
+		);
 	}
 		
 		

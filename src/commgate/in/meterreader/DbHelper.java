@@ -6,6 +6,7 @@ import java.io.InputStream;
 
 import android.content.Context;
 import android.content.res.AssetManager;
+import android.database.SQLException;
 import android.database.sqlite.*;
 import android.util.Log;
 
@@ -14,12 +15,13 @@ public class DbHelper extends  SQLiteOpenHelper
 	private static final String dbName = "TEST";
 	private static final int dbVersion = 1;
 	private Context ctx;
+	private static final String TAG = "DEEPGOSWAMI";
 	
 	public DbHelper(Context context)
 	{
 		super(context, dbName, null, dbVersion);
 		ctx = context;
-		Log.w("DEEPGOSWAMI","in db Helper" );
+		
 	}
 	
 	@Override
@@ -27,7 +29,12 @@ public class DbHelper extends  SQLiteOpenHelper
 	{
 		InputStream is = null;
 		String sqlCreateTable = null;
+		String sqlCreateOutputTable = null;
+		
 		byte[] buffer = new byte[7000];
+		
+		
+		// Run the input table creation sql
 		AssetManager theAsset = ctx.getAssets();
 		try {
 			
@@ -44,9 +51,38 @@ public class DbHelper extends  SQLiteOpenHelper
 			//theAsset.close();
 		}
 		
-		Log.d("DEEPGOSWAMI", "SQL: " + sqlCreateTable);
+		try {		
+			theDB.execSQL(sqlCreateTable);
+		}
+		catch (SQLException se)
+		{
+			Log.d(TAG, "Could not create input table: " + se.toString());
+		}
 		
-		theDB.execSQL(sqlCreateTable);
+		
+		//Create the Output Table
+		
+		
+		try {
+			
+			is = theAsset.open("dbOutputTableCreate.txt");
+			is.read(buffer);
+			sqlCreateOutputTable = new String(buffer);
+		} 
+		catch (IOException e) 
+		{
+			Log.d(TAG, "Could not open dbOutputTableCreate.txt " + e.toString());
+		}
+		
+		
+		try {		
+			theDB.execSQL(sqlCreateOutputTable);
+		}
+		catch (SQLException se)
+		{
+			Log.d(TAG, "Could not create input table: " + se.toString());
+		}
+		
 	}
 
 	

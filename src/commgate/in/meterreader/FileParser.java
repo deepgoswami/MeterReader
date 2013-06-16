@@ -88,7 +88,7 @@ public class FileParser
 			theDb = dbHelper.getWritableDatabase();
 			ContentValues theValues = new ContentValues();
 			theValues.clear();
-			Log.i("DEEPGOSWAMI", "CONS_REF = " + csvLine[0]);
+			
 			
 			theValues.put("CONS_REF", csvLine[0]);
 			theValues.put("BILL_MTH", csvLine[1]);
