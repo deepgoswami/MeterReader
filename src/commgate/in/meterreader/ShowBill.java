@@ -97,7 +97,7 @@ public class ShowBill extends Activity
 	String rcptDate = null;
 	double rcptAmt1 = 0.0;
 	
-	
+	String photoPath = null;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) 
@@ -112,7 +112,8 @@ public class ShowBill extends Activity
 		
 		Intent fromPrevious = getIntent();
 		AccountNum = fromPrevious.getStringExtra("AccountNumber");
-		
+		photoPath = fromPrevious.getStringExtra("PicturePath");
+		Log.d(TAG, "Photo Path = " + photoPath);
 		
 		String query = "ACC_NO =" + "\'" + AccountNum + "\'";
 		
@@ -450,7 +451,8 @@ public class ShowBill extends Activity
 				
 				odb.setMAX_DEMD(null);
 				odb.setRECONN_CHARGE(null);
-				odb.setPathToPhoto(null);
+				
+				odb.setPathToPhoto(photoPath);
 				
 				
 				odb.setBILL_MTH(String.valueOf(billMonth));
