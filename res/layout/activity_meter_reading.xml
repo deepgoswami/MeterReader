@@ -1,0 +1,107 @@
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:stretchColumns="0" >
+
+    <TableRow>
+
+        <TextView android:text="Consumer Name" />
+
+        <TextView
+            android:id="@+id/consumerNameText"
+            android:text=" " />
+    </TableRow>
+
+    <TableRow>
+
+        <TextView android:text="Consumer Number" />
+
+        <TextView
+            android:id="@+id/ConsumerNumText"
+            android:text=" " />
+    </TableRow>
+
+    <TableRow>
+
+        <TextView android:text="Address 1" />
+
+        <TextView
+            android:id="@+id/address1Text"
+            android:text=" " />
+    </TableRow>
+
+    <TableRow>
+
+        <TextView android:text="Address 2" />
+
+        <TextView
+            android:id="@+id/address2Text"
+            android:text=" " />
+    </TableRow>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.80" >
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:text=" "
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/textView2"
+            android:text="Meter Reading"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <EditText
+            android:id="@+id/editText1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/textView1"
+            android:layout_toRightOf="@+id/textView2"
+            android:ems="10"
+            android:inputType="number" >
+
+            <requestFocus />
+        </EditText>
+
+        <Button
+            android:id="@+id/button1"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/editText1"
+            android:text="Edit" />
+
+        <Button
+            android:id="@+id/button2"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/button1"
+            android:layout_marginRight="25dp"
+            android:layout_toLeftOf="@+id/button1"
+            android:text="Scan" />
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/button1"
+            android:layout_marginTop="26dp"
+            android:text="Next>" />
+
+    </RelativeLayout>
+</TableLayout>

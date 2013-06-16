@@ -1,0 +1,884 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent" android:layout_height="fill_parent">
+	<TableLayout 
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent"
+	    android:stretchColumns="0" >
+		<TableRow
+	  	    android:id="@+id/tableRow1"
+	  	    android:layout_width="wrap_content"
+	  	    android:layout_height="wrap_content" >
+	  	    <TextView
+	  	        android:layout_width="match_parent"
+	  	        android:layout_height="wrap_content"
+	  	        android:padding="2dip"
+	  	        android:text="Division" />
+
+	  	    <TextView
+	  	        android:id="@+id/divisionTxt"
+	  	        android:layout_width="wrap_content"
+	  	        android:layout_height="wrap_content"
+	  	        android:padding="2dip"
+	  	        android:text=" " />
+	  	</TableRow>
+	  	<TableRow
+	  	    android:id="@+id/tableRow2"
+	  	    android:layout_width="wrap_content"
+	  	    android:layout_height="wrap_content" >
+	  	    <TextView
+	  	        android:layout_width="match_parent"
+	  	        android:layout_height="wrap_content"
+	  	        android:padding="2dip"
+	  	        android:text="SubDiv" />
+
+	  	    <TextView
+	  	        android:id="@+id/subDivTxt"
+	  	        android:layout_width="wrap_content"
+	  	        android:layout_height="wrap_content"
+	  	        android:padding="2dip"
+	  	        android:text=" " />
+	  	</TableRow>
+
+	  	<TableRow
+	  	    android:id="@+id/tableRow3"
+	  	    android:layout_width="wrap_content"
+	  	    android:layout_height="wrap_content" >
+	  	    <TextView
+	  	        android:layout_width="match_parent"
+	  	        android:layout_height="wrap_content"
+	  	        android:padding="2dip"
+	  	        android:text="Section" />
+
+	  	    <TextView
+	  	        android:id="@+id/sectionTxt"
+	  	        android:layout_width="wrap_content"
+	  	        android:layout_height="wrap_content"
+	  	        android:padding="2dip"
+	  	        android:text=" " />
+	  	</TableRow>
+
+	  	<TableRow
+	  	    android:id="@+id/tableRow4"
+	  	    android:layout_width="wrap_content"
+	  	    android:layout_height="wrap_content" >
+	  	    <TextView
+	  	        android:layout_width="match_parent"
+	  	        android:layout_height="wrap_content"
+	  	        android:padding="2dip"
+	  	        android:textStyle="bold"
+	  	        android:text="New A/C No" />
+
+	  	    <TextView
+	  	        android:id="@+id/newACTxt"
+	  	        android:layout_width="wrap_content"
+	  	        android:layout_height="wrap_content"
+	  	        android:padding="2dip"
+	  	        android:text=" " />
+	  	</TableRow>
+
+	  	<TableRow
+	  	    android:id="@+id/tableRow5"
+	  	    android:layout_width="wrap_content"
+	  	    android:layout_height="wrap_content" >
+	  	    <TextView
+	  	        android:layout_width="match_parent"
+	  	        android:layout_height="wrap_content"
+	  	        android:padding="2dip"
+	  	        android:text="Old A/C No" />
+
+	  	    <TextView
+	  	        android:id="@+id/oldAcNumTxt"
+	  	        android:layout_width="wrap_content"
+	  	        android:layout_height="wrap_content"
+	  	        android:padding="2dip"
+	  	        android:text=" " />
+	  	</TableRow>
+
+	  	<TableRow
+	  	    android:id="@+id/tableRow6"
+	  	    android:layout_width="wrap_content"
+	  	    android:layout_height="wrap_content" >
+	  	    <TextView
+	  	        android:layout_width="match_parent"
+	  	        android:layout_height="wrap_content"
+	  	        android:padding="2dip"
+	  	        android:text="Consumer No" />
+
+	  	    <TextView
+	  	        android:id="@+id/consumerNoTxt"
+	  	        android:layout_width="wrap_content"
+	  	        android:layout_height="wrap_content"
+	  	        android:padding="2dip"
+	  	        android:text=" " />
+	  	</TableRow>
+
+	  	<TableRow
+	  	    android:id="@+id/tableRow7"
+	  	    android:layout_width="wrap_content"
+	  	    android:layout_height="wrap_content" >
+	  	    <TextView
+	  	        android:layout_width="match_parent"
+	  	        android:layout_height="wrap_content"
+	  	        android:padding="2dip"
+	  	        android:text="Elect. Address" />
+
+	  	    <TextView
+	  	        android:id="@+id/electAddressTxt"
+	  	        android:layout_width="wrap_content"
+	  	        android:layout_height="wrap_content"
+	  	        android:padding="2dip"
+	  	        android:text=" " />
+	  	</TableRow>
+	  	
+	  	<TableRow
+	  	    android:id="@+id/tableRow8"
+	  	    android:layout_width="wrap_content"
+	  	    android:layout_height="wrap_content" >
+	  	    <TextView
+	  	        android:layout_width="match_parent"
+	  	        android:layout_height="wrap_content"
+	  	        android:padding="2dip"
+	  	        android:text="Bill Period" />
+
+	  	    <TextView
+	  	        android:id="@+id/billPeriodTxt"
+	  	        android:layout_width="wrap_content"
+	  	        android:layout_height="wrap_content"
+	  	        android:padding="2dip"
+	  	        android:text=" " />
+	  	</TableRow>	  	
+
+	  	<TableRow
+	  	    android:id="@+id/tableRow9"
+	  	    android:layout_width="wrap_content"
+	  	    android:layout_height="wrap_content" >
+	  	    <TextView
+	  	        android:layout_width="match_parent"
+	  	        android:layout_height="wrap_content"
+	  	        android:padding="2dip"
+	  	        android:text="No. of Months" />
+
+	  	    <TextView
+	  	        android:id="@+id/noOfMonthsTxt"
+	  	        android:layout_width="wrap_content"
+	  	        android:layout_height="wrap_content"
+	  	        android:padding="2dip"
+	  	        android:text=" " />
+	  	</TableRow>	 
+	  	 	
+	  	<TableRow
+	  	    android:id="@+id/tableRow10"
+	  	    android:layout_width="wrap_content"
+	  	    android:layout_height="wrap_content" >
+	  	    <TextView
+	  	        android:layout_width="match_parent"
+	  	        android:layout_height="wrap_content"
+	  	        android:padding="2dip"
+	  	        android:text="Dt" />
+
+	  	    <TextView
+	  	        android:id="@+id/dtTxt"
+	  	        android:layout_width="wrap_content"
+	  	        android:layout_height="wrap_content"
+	  	        android:padding="2dip"
+	  	        android:text=" " />
+	  	</TableRow>	 
+	  	
+	  	<TableRow
+	  	    android:id="@+id/tableRow11"
+	  	    android:layout_width="wrap_content"
+	  	    android:layout_height="wrap_content" >
+
+	  	    <TextView
+	  	        android:layout_width="wrap_content"
+	  	        android:layout_height="wrap_content"
+	  	        android:layout_span="2"
+	  	        android:padding="2dip"
+	  	        android:text="Name and Address"
+	  	        android:textStyle="bold" />
+	    
+	  	</TableRow>	 
+	  	
+	  	<TableRow
+	  	    android:layout_width="wrap_content"
+	  	    android:layout_height="wrap_content" >
+
+	  	    <TextView
+	  	        android:id="@+id/Name"
+	  	        android:layout_width="wrap_content"
+	  	        android:layout_height="wrap_content"
+	  	        android:text=""
+	  	        android:paddingLeft="25dip"
+	  	        />
+
+	  	    
+
+	  	</TableRow>
+
+	  	<TableRow
+	  	    android:layout_width="wrap_content"
+	  	    android:layout_height="wrap_content" >
+
+	  	    <TextView
+	  	        android:id="@+id/Addr1"
+	  	        android:layout_width="wrap_content"
+	  	        android:layout_height="wrap_content"
+	  	        android:text=""
+	  	        android:paddingLeft="25dp" />
+
+	  	    <TextView
+	  	        
+	  	        android:layout_width="wrap_content"
+	  	        android:layout_height="wrap_content"
+	  	        android:text=" " />
+
+	  	</TableRow>
+
+	  	<TableRow
+	  	    android:layout_width="wrap_content"
+	  	    android:layout_height="wrap_content" >
+
+	  	    <TextView
+	  	        android:id="@+id/addr2"
+	  	        android:layout_width="wrap_content"
+	  	        android:layout_height="wrap_content"
+	  	        android:text=""
+	  	        android:paddingLeft="25dp" />
+
+	  	    <TextView
+	  	        
+	  	        android:layout_width="wrap_content"
+	  	        android:layout_height="wrap_content"
+	  	        android:text=" " />
+
+	  	</TableRow>
+
+	  	<TableRow
+	  	    android:layout_width="wrap_content"
+	  	    android:layout_height="wrap_content" >
+
+	  	    <TextView
+	  	        android:id="@+id/addr3"
+	  	        android:layout_width="wrap_content"
+	  	        android:layout_height="wrap_content"
+	  	        android:text=""
+	  	        android:paddingLeft="25dp" />
+
+	  	    <TextView
+	  	        
+	  	        android:layout_width="wrap_content"
+	  	        android:layout_height="wrap_content"
+	  	        android:text=" " />
+
+	  	</TableRow>
+	  	<TableRow
+	  	    android:id="@+id/tableRow12"
+	  	    android:layout_width="wrap_content"
+	  	    android:layout_height="wrap_content" >
+	  	    <TextView
+	  	        android:layout_width="match_parent"
+	  	        android:layout_height="wrap_content"
+	  	        android:padding="2dip"
+	  	        android:text="Security Deposit" />
+
+	  	    <TextView
+	  	        android:id="@+id/securitydepositTxt"
+	  	        android:layout_width="wrap_content"
+	  	        android:layout_height="wrap_content"
+	  	        android:padding="2dip"
+	  	        android:text=" " />
+	  	</TableRow>	 
+	  	<TableRow
+	  	    android:id="@+id/tableRow12"
+	  	    android:layout_width="wrap_content"
+	  	    android:layout_height="wrap_content" >
+	  	    <TextView
+	  	        android:layout_width="match_parent"
+	  	        android:layout_height="wrap_content"
+	  	        android:padding="2dip"
+	  	        android:text="Consumer Status" />
+
+	  	    <TextView
+	  	        android:id="@+id/consumerStatusTxt"
+	  	        android:layout_width="wrap_content"
+	  	        android:layout_height="wrap_content"
+	  	        android:padding="2dip"
+	  	        android:text=" " />
+	  	</TableRow>	 
+	  	
+	  	<TableRow
+	  	    android:layout_width="wrap_content"
+	  	    android:layout_height="wrap_content" >
+
+	  	    <TextView
+	  	        android:layout_width="wrap_content"
+	  	        android:layout_height="wrap_content"
+	  	        android:padding="2dip"
+	  	        android:text="Category" />
+
+	  	    <TextView
+	  	        android:id="@+id/category"
+	  	        android:layout_width="wrap_content"
+	  	        android:layout_height="wrap_content" />
+	  	    
+	  	    <TextView
+	  	        android:layout_width="wrap_content"
+	  	        android:layout_height="wrap_content"
+	  	        android:padding="2dip"
+	  	        android:text="MF" />
+
+	  	    <TextView
+	  	        android:id="@+id/mf"
+	  	        android:layout_width="wrap_content"
+	  	        android:layout_height="wrap_content" />
+
+	  	</TableRow>
+
+	  	<TableRow
+	  	    android:layout_width="wrap_content"
+	  	    android:layout_height="wrap_content" >
+
+	  	    <TextView
+	  	        android:layout_width="wrap_content"
+	  	        android:layout_height="wrap_content"
+	  	        android:text="Load" />
+
+	  	    <TextView
+	  	        android:id="@+id/loadText"
+	  	        android:layout_width="wrap_content"
+	  	        android:layout_height="wrap_content" />
+
+	  	    <TextView
+	  	        android:layout_width="wrap_content"
+	  	        android:layout_height="wrap_content"
+	  	        android:text="Phase" />
+
+	  	    <TextView
+	  	        android:id="@+id/phase"
+	  	        android:layout_width="wrap_content"
+	  	        android:layout_height="wrap_content" />
+
+	  	</TableRow>
+
+	  	<TableRow
+	  	    android:layout_width="wrap_content"
+	  	    android:layout_height="wrap_content" >
+
+	  	    <TextView
+	  	        android:layout_width="wrap_content"
+	  	        android:layout_height="wrap_content" />
+	  	    
+	  	    <TextView
+	  	        android:id="@+id/none"
+	  	        android:layout_width="wrap_content"
+	  	        android:layout_height="wrap_content"
+	  	        android:text="Reading" />
+
+	  	    <TextView
+	  	        android:id="@+id/none1"
+	  	        android:layout_width="wrap_content"
+	  	        android:layout_height="wrap_content"
+	  	        android:text="Month" />
+
+	  	    <TextView
+	  	        android:id="@+id/none2"
+	  	        android:layout_width="wrap_content"
+	  	        android:layout_height="wrap_content"
+	  	        android:text="Status" />
+
+	  	</TableRow>
+
+	  	<TableRow
+	  	    android:layout_width="wrap_content"
+	  	    android:layout_height="wrap_content" >
+
+	  	    <TextView
+	  	        android:layout_width="wrap_content"
+	  	        android:layout_height="wrap_content"
+	  	        android:text="Prev Rdg" />
+
+        	<TextView
+        	    android:id="@+id/oldReadingText"
+        	    android:layout_width="wrap_content"
+        	    android:layout_height="wrap_content" />
+
+        	<TextView
+        	    android:id="@+id/oldReadingDate"
+        	    android:layout_width="wrap_content"
+        	    android:layout_height="wrap_content" />
+
+        	<TextView
+        	    android:id="@+id/oldReadingStatus"
+        	    android:layout_width="wrap_content"
+        	    android:layout_height="wrap_content" />
+
+	  	</TableRow>
+
+	  	<TableRow
+	  	    android:layout_width="wrap_content"
+	  	    android:layout_height="wrap_content" >
+
+	  	    <TextView
+	  	        android:layout_width="wrap_content"
+	  	        android:layout_height="wrap_content"
+	  	        android:text="Old Mtr Fnl Rdg" />
+
+        	<TextView
+        	    android:id="@+id/oldmtrFinalText"
+        	    android:layout_width="wrap_content"
+        	    android:layout_height="wrap_content"
+        	    android:layout_span="2" />
+
+	  	</TableRow>
+
+	  		<TableRow
+	  		    android:layout_width="wrap_content"
+	  		    android:layout_height="wrap_content" >
+
+	  	    	<TextView
+	  	    	    android:layout_width="wrap_content"
+	  	    	    android:layout_height="wrap_content"
+	  	    	    android:text="New Mtr Inl Rdg" />
+
+        	<TextView
+        	    android:id="@+id/newMtrInlText"
+        	    android:layout_width="wrap_content"
+        	    android:layout_height="wrap_content"
+        	    android:layout_span="2" />
+
+	  	</TableRow>
+
+	  	<TableRow
+	  	    android:layout_width="wrap_content"
+	  	    android:layout_height="wrap_content" >
+
+	  	    <TextView
+	  	        android:layout_width="wrap_content"
+	  	        android:layout_height="wrap_content"
+	  	        android:text="Pres Rdg" />
+
+        	<TextView
+        	    android:id="@+id/presReadingText"
+        	    android:layout_width="wrap_content"
+        	    android:layout_height="wrap_content" />
+
+        	<TextView
+        	    android:id="@+id/presReadingDate"
+        	    android:layout_width="wrap_content"
+        	    android:layout_height="wrap_content" />
+
+        	<TextView
+        	    android:id="@+id/presReadingStatus"
+        	    android:layout_width="wrap_content"
+        	    android:layout_height="wrap_content" />
+
+	  	</TableRow>
+	  	
+	  	<TableRow
+	  	    android:layout_width="wrap_content"
+	  	    android:layout_height="wrap_content" >
+
+	  	    <TextView
+	  	        android:layout_width="wrap_content"
+	  	        android:layout_height="wrap_content"
+	  	        android:text="Mtr No" />
+
+        	<TextView
+        	    android:id="@+id/mtrNoText"
+        	    android:layout_width="wrap_content"
+        	    android:layout_height="wrap_content"
+        	    android:text=" " />
+
+	  	</TableRow>
+	  	
+	  	<TableRow
+	  	    android:layout_width="wrap_content"
+	  	    android:layout_height="wrap_content" >
+
+	  	    <TextView
+	  	        android:layout_width="wrap_content"
+	  	        android:layout_height="wrap_content"
+	  	        android:text="Mtr Owner" />
+
+	  	    <TextView
+	  	        android:id="@+id/mtrOwnerTxt"
+	  	        android:layout_width="wrap_content"
+	  	        android:layout_height="wrap_content"
+	  	        android:text=" " />
+
+	  	</TableRow>
+
+	  	<TableRow
+	  	    android:layout_width="wrap_content"
+	  	    android:layout_height="wrap_content" >
+
+	  	    <TextView
+	  	        android:layout_width="wrap_content"
+	  	        android:layout_height="wrap_content"
+	  	        android:text="Bill Basis" />
+
+	  	    <TextView
+	  	        android:id="@+id/billBasisTxt"
+	  	        android:layout_width="wrap_content"
+	  	        android:layout_height="wrap_content"
+	  	        android:text=" " />
+
+	  	</TableRow>
+
+	  	<TableRow
+	  	    android:layout_width="wrap_content"
+	  	    android:layout_height="wrap_content" >
+
+	  	    <TextView
+	  	        android:layout_width="wrap_content"
+	  	        android:layout_height="wrap_content"
+	  	        android:text="Bill Units" />
+
+	  	    <TextView
+	  	        android:id="@+id/billUnitsTxt"
+	  	        android:layout_width="wrap_content"
+	  	        android:layout_height="wrap_content"
+	  	        android:text=" " />
+
+	  	</TableRow>
+
+	  	<TableRow
+	  	    android:layout_width="wrap_content"
+	  	    android:layout_height="wrap_content" >
+
+	  	    <TextView
+	  	        android:layout_width="wrap_content"
+	  	        android:layout_height="wrap_content"
+	  	        android:text="Bill Slabs" />
+
+	  	    <TextView
+	  	        android:layout_width="wrap_content"
+	  	        android:layout_height="wrap_content" />
+
+	  	</TableRow>
+
+	  	<TableRow
+	  	    android:layout_width="wrap_content"
+	  	    android:layout_height="wrap_content" >
+	  	    
+	  	</TableRow>
+
+	  	<TableRow
+	  	    android:layout_width="wrap_content"
+	  	    android:layout_height="wrap_content" >
+
+	  	    <TextView
+	  	        android:layout_width="wrap_content"
+	  	        android:layout_height="wrap_content"
+	  	        android:text="slab 1:" />
+
+	  	    <TextView
+	  	        android:id="@+id/slab1Txt"
+	  	        android:layout_width="wrap_content"
+	  	        android:layout_height="wrap_content"
+	  	        android:text=" " />
+
+	  	</TableRow>
+
+	  	<TableRow
+	  	    android:layout_width="wrap_content"
+	  	    android:layout_height="wrap_content" >
+
+	  	    <TextView
+	  	        android:layout_width="wrap_content"
+	  	        android:layout_height="wrap_content"
+	  	        android:text="slab 2:" />
+
+	  	    <TextView
+	  	        android:id="@+id/slab2Txt"
+	  	        android:layout_width="wrap_content"
+	  	        android:layout_height="wrap_content"
+	  	        android:text=" " />
+
+	  	</TableRow>
+
+	  	<TableRow
+	  	    android:layout_width="wrap_content"
+	  	    android:layout_height="wrap_content" >
+
+	  	    <TextView
+	  	        android:layout_width="wrap_content"
+	  	        android:layout_height="wrap_content"
+	  	        android:text="slab 3:" />
+
+	  	    <TextView
+	  	        android:id="@+id/slab3Txt"
+	  	        android:layout_width="wrap_content"
+	  	        android:layout_height="wrap_content"
+	  	        android:text=" " />
+
+	  	</TableRow>
+
+	  	<TableRow
+	  	    android:layout_width="wrap_content"
+	  	    android:layout_height="wrap_content" >
+
+	  	    <TextView
+	  	        android:layout_width="wrap_content"
+	  	        android:layout_height="wrap_content"
+	  	        android:text="slab 4:" />
+
+	  	    <TextView
+	  	        android:id="@+id/slab4Txt"
+	  	        android:layout_width="wrap_content"
+	  	        android:layout_height="wrap_content"
+	  	        android:text=" " />
+
+	  	</TableRow>
+
+	  	<TableRow
+	  	    android:layout_width="wrap_content"
+	  	    android:layout_height="wrap_content" >
+
+	  	    <TextView
+	  	        android:layout_width="wrap_content"
+	  	        android:layout_height="wrap_content"
+	  	        android:text="Energy Chg" />
+
+	  	    <TextView
+	  	        android:id="@+id/energyChgText"
+	  	        android:layout_width="wrap_content"
+	  	        android:layout_height="wrap_content"
+	  	        android:text=" " />
+
+	  	</TableRow>
+
+	  	<TableRow
+	  	    android:layout_width="wrap_content"
+	  	    android:layout_height="wrap_content" >
+
+	  	    <TextView
+	  	        android:layout_width="wrap_content"
+	  	        android:layout_height="wrap_content"
+	  	        android:text="Fix/Dem Chg" />
+
+	  	    <TextView
+	  	        android:id="@+id/fixDemChgText"
+	  	        android:layout_width="wrap_content"
+	  	        android:layout_height="wrap_content"
+	  	        android:text=" " />
+
+	  	</TableRow>
+
+	  	<TableRow
+	  	    android:layout_width="wrap_content"
+	  	    android:layout_height="wrap_content" >
+
+	  	    <TextView
+	  	        android:layout_width="wrap_content"
+	  	        android:layout_height="wrap_content"
+	  	        android:text="Meter Rent" />
+
+	  	    <TextView
+	  	        android:id="@+id/meterRentTxt"
+	  	        android:layout_width="wrap_content"
+	  	        android:layout_height="wrap_content"
+	  	        android:text=" " />
+
+	  	</TableRow>
+
+	  	<TableRow
+	  	    android:layout_width="wrap_content"
+	  	    android:layout_height="wrap_content" >
+
+	  	    <TextView
+	  	        android:layout_width="wrap_content"
+	  	        android:layout_height="wrap_content"
+	  	        android:text="Elect Duty" />
+
+	  	    <TextView
+	  	        android:id="@+id/electDutyTxt"
+	  	        android:layout_width="wrap_content"
+	  	        android:layout_height="wrap_content"
+	  	        android:text=" " />
+
+	  	</TableRow>
+
+	  	<TableRow
+	  	    android:layout_width="wrap_content"
+	  	    android:layout_height="wrap_content" >
+
+	  	    <TextView
+	  	        android:layout_width="wrap_content"
+	  	        android:layout_height="wrap_content"
+	  	        android:text="DPS" />
+
+	  	    <TextView
+	  	        android:id="@+id/dpsText"
+	  	        android:layout_width="wrap_content"
+	  	        android:layout_height="wrap_content"
+	  	        android:text=" " />
+
+	  	</TableRow>
+
+		<TableRow
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content" >
+
+	  	    <TextView
+	  	        android:layout_width="wrap_content"
+	  	        android:layout_height="wrap_content"
+	  	        android:text="Pres Bill Amt" 
+	  	        android:textStyle="bold"/>
+
+	  	    <TextView
+	  	        android:id="@+id/presBillText"
+	  	        android:layout_width="wrap_content"
+	  	        android:layout_height="wrap_content"
+	  	        android:text=" " />
+
+	  	</TableRow>
+	  	<TableRow
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content" >
+
+	  	    <TextView android:text="Arrears" />
+	  	    <TextView
+            	android:id="@+id/arrearsText"
+            	android:text=" " />
+	  	</TableRow>
+	  	<TableRow
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content" >
+
+	  	    <TextView android:text="Adj. Amount" />
+	  	    <TextView
+            	android:id="@+id/adjAmountText"
+            	android:text=" " />
+	  	</TableRow>
+	  	<TableRow
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content" >
+	  	    <TextView android:text="Sundry Adj." />
+	  	    <TextView
+            	android:id="@+id/sundryAdjText"
+            	android:text=" " />
+	  	</TableRow>
+	  	
+	  	<TableRow
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content" >
+	  	    <TextView android:text="After Due Date." />
+		</TableRow>
+		
+	  	<TableRow
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content" >
+	  	    <TextView 
+	  	        android:text="#NET AMOUNT:"
+	  	        android:paddingLeft="10dp"
+	  	        android:textSize="16sp"
+	  	    />
+	  	    <TextView
+            	android:id="@+id/afterDueAmountText"
+            	android:textSize="16sp"
+            	android:text=" " />
+	  	</TableRow>
+	  	
+	  	<TableRow
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content" >
+	  	    <TextView android:text="By Due Date." />
+	  	</TableRow>
+		<TableRow>
+			<TextView 
+			    android:paddingLeft="10dp"
+			    android:text="Rebate" />
+	  	    <TextView
+            	android:id="@+id/rebateText"
+            	android:text=" " />
+	  	 </TableRow>
+	  	<TableRow
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content" >
+	  	    <TextView 
+	  	        android:text="#NET AMOUNT:"
+	  	        android:paddingLeft="10dp"
+	  	        android:textSize="16sp"
+	  	    />
+	  	    <TextView
+            	android:id="@+id/byDueAmountText"
+            	android:textSize="16sp"
+            	android:text=" " />
+	  	</TableRow>
+	  	
+	  	<TableRow
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content" >
+	  	    <TextView android:text="Last Payment Details." />
+	  	</TableRow>
+	  	<TableRow
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content" >
+	  	    <TextView 
+	  	        android:text="BK No"
+	  	        android:paddingLeft="15dp"
+	  	        
+	  	    />
+	  	    <TextView
+            	android:id="@+id/bkNoText"
+            	android:text=" " />
+	  	</TableRow>
+	  	<TableRow
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content" >
+	  	    <TextView 
+	  	        android:text="Rcpt"
+	  	        android:paddingLeft="15dp"
+	  	        
+	  	    />
+	  	    <TextView
+            	android:id="@+id/rcptText"
+            	android:text=" " />
+	  	</TableRow>
+	  	
+	  	<TableRow
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content" >
+	  	    <TextView 
+	  	        android:text="Date"
+	  	        android:paddingLeft="15dp"
+	  	        
+	  	    />
+	  	    <TextView
+            	android:id="@+id/rcptDateText"
+            	android:text=" " />
+	  	</TableRow>
+	  	
+	  	<TableRow
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content" >
+	  	    <TextView 
+	  	        android:text="Amount"
+	  	        android:paddingLeft="15dp"
+	  	        
+	  	    />
+	  	    <TextView
+            	android:id="@+id/rcptAmountText"
+            	android:text=" " />
+	  	</TableRow>
+	  	
+	  	<TableRow>
+	  	    <TextView android:text=" " />
+	  	</TableRow>
+	  	<TableRow>
+	  	    <TextView android:text=" " />
+	  	    <Button
+        		android:id="@+id/btnBillSave"
+        		android:layout_width="match_parent"
+        		android:layout_height="wrap_content"
+        		
+        		android:text="Save and Print" 
+        	/>
+	
+	  	</TableRow>
+	</TableLayout>
+	
+	
+</ScrollView>

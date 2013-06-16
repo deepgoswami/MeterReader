@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">MeterReader</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="txtBtnLoad">Get File</string>
+    <string name="title_activity_bluetooth_selector">File Selector</string>
+    <string name="btnSrchBt">Files to be Downloaded</string>
+    <string name="title_activity_print_selector">PrintSelector</string>
+    <string name="txtStrSelectFile">Select the File to Download</string>
+    <string name="btnPrinterSelectOK">Submit</string>
+    <string name="title_activity_preferences">Preferences</string>
+    <string name="title_activity_file_download">FileDownload</string>
+    <string name="password">Password</string>
+    <string name="username">User Name</string>
+    <string name="btnLogin">Login</string>
+    <string name="title_activity_choose_action">ChooseAction</string>
+    <string name="btnDownload">Download</string>
+    <string name="btnReadMeter">Take Meter Reading</string>
+    <string name="btnUpload">Upload Data</string>
+    <string name="title_activity_choose_consumer_number">ChooseConsumerNumber</string>
+    <string name="title_activity_show_bill">ShowBill</string>
+    <string name="title_activity_meter_reading">MeterReading</string>
+
+</resources>
