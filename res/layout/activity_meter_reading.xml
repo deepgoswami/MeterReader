@@ -5,7 +5,7 @@
 
     <TableRow>
 
-        <TextView android:text="Consumer Name" />
+        <TextView android:text="Name" />
 
         <TextView
             android:id="@+id/consumerNameText"
@@ -14,7 +14,7 @@
 
     <TableRow>
 
-        <TextView android:text="Consumer Number" />
+        <TextView android:text="Address 1" />
 
         <TextView
             android:id="@+id/ConsumerNumText"
@@ -23,7 +23,7 @@
 
     <TableRow>
 
-        <TextView android:text="Address 1" />
+        <TextView android:text="Address 2" />
 
         <TextView
             android:id="@+id/address1Text"
@@ -32,7 +32,7 @@
 
     <TableRow>
 
-        <TextView android:text="Address 2" />
+        <TextView android:text="Address 3" />
 
         <TextView
             android:id="@+id/address2Text"

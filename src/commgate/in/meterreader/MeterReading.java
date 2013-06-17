@@ -8,6 +8,9 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -37,16 +40,19 @@ public class MeterReading extends Activity {
 		binder = fromPrevious.getStringExtra("Binder");
 		accountNumber = fromPrevious.getStringExtra("AccountNumber");
 		
+		String[] displayDetails = new String[5];
+		displayDetails = getDetailsFromDB();
+		
 		
 		//fill in the customer details
-		/*TextView txtTemp = (TextView) findViewById(R.id.consumerNameText);
-		txtTemp.setText("SMT GOLPA PALO");
+		TextView txtTemp = (TextView) findViewById(R.id.consumerNameText);
+		txtTemp.setText(displayDetails[0]);
 		txtTemp = (TextView) findViewById(R.id.ConsumerNumText);
-		txtTemp.setText("342101260379");
+		txtTemp.setText(displayDetails[1]);
 		txtTemp = (TextView) findViewById(R.id.address1Text);
-		txtTemp.setText("Hari Hara Nagar");
+		txtTemp.setText(displayDetails[2]);
 		txtTemp = (TextView) findViewById(R.id.address2Text);
-		txtTemp.setText("Aska");*/
+		txtTemp.setText(displayDetails[3]);
 		
 		Button btnNext = (Button) findViewById(R.id.button3);
 		
@@ -93,6 +99,42 @@ public class MeterReading extends Activity {
 		);
 		
 	}
+
+	
+	
+	
+	
+	private String[] getDetailsFromDB() 
+	{
+		DbHelper dbHelper = new DbHelper(getApplicationContext());
+		String[] columnList = {"NAME", "ADDR1", "ADDR2", "ADDR3"};
+		String query = "BINDER =" + "\'" + binder +"\'" + "AND ACC_NO =" + "\'" + accountNumber + "\'";
+		String[] displayDetails = new String[4];
+		
+		SQLiteDatabase theDb = dbHelper.getReadableDatabase();
+		Cursor theCursor = theDb.query("METER_TABLE", columnList, query, null, null, null, null);
+		
+		if (theCursor.moveToFirst())
+		{
+			displayDetails[0] = theCursor.getString(0);
+			displayDetails[1] = theCursor.getString(1);
+			displayDetails[2] = theCursor.getString(2);
+			displayDetails[3] = theCursor.getString(3);
+			theCursor.close();
+			dbHelper.close();
+			return displayDetails;
+		}
+		else
+			Log.d("DEEPGOSWAMI", "MeterReading: getDetailsFromDB : cursor is empty");
+		
+		theCursor.close();
+		dbHelper.close();
+		return null;
+	}
+	
+	
+	
+	
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
