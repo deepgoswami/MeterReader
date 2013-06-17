@@ -6,7 +6,11 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.animation.AnimatorSet.Builder;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -20,14 +24,20 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class MeterReading extends Activity {
-	private int TEST_INTENT = 42;
+	private int SHOW_BILL = 42;
 	private int TAKE_PICTURE = 345;
+	private int REASON_WHY = 4123;
 	private String pictureFileName = null;
 	
 	private static boolean isPictureTaken = false;
 	String subdivision;
 	String binder;
 	String accountNumber;
+	private int iOldReading;
+	
+	private static final int DIALOG_RESOLVE_ISSUE = 421; 
+	private int reasonWhy = 0;
+	private String reasonCode;
 	
 	
 	@Override
@@ -40,6 +50,9 @@ public class MeterReading extends Activity {
 		binder = fromPrevious.getStringExtra("Binder");
 		accountNumber = fromPrevious.getStringExtra("AccountNumber");
 		
+		String strOldReading = null;
+		iOldReading = 0;
+		isPictureTaken = false;
 		String[] displayDetails = new String[5];
 		displayDetails = getDetailsFromDB();
 		
@@ -53,28 +66,56 @@ public class MeterReading extends Activity {
 		txtTemp.setText(displayDetails[2]);
 		txtTemp = (TextView) findViewById(R.id.address2Text);
 		txtTemp.setText(displayDetails[3]);
+		strOldReading = displayDetails[4];
+		iOldReading = Integer.parseInt(strOldReading);
 		
 		Button btnNext = (Button) findViewById(R.id.button3);
 		
 		btnNext.setOnClickListener(new OnClickListener()
 		{
+			
 			@Override
 			public void onClick(View v)
 			{
+				
 				if (!isPictureTaken)
 				{
 					Toast.makeText(getApplicationContext(), "You must take a picture of the meter", Toast.LENGTH_LONG).show();
 					return;
 				}
-				Intent intent = new Intent(getApplicationContext(), ShowBill.class);
+				
+				
 				TextView editTxt = (TextView) findViewById(R.id.editText1);
-				intent.putExtra("currentreading", editTxt.getText().toString());
-				intent.putExtra("Subdivision", subdivision);
-				intent.putExtra("Binder", binder);
-				if (isPictureTaken)
-					intent.putExtra("PicturePath", pictureFileName);
-				intent.putExtra("AccountNumber", accountNumber);
-				startActivityForResult(intent, TEST_INTENT);
+				
+				int icurrRdng = Integer.parseInt(editTxt.getText().toString());
+				
+				if (icurrRdng <= iOldReading)
+				{
+					
+					Intent reasonIntent = new Intent(getApplicationContext(),ChooseReadingReason.class);
+					reasonIntent.putExtra("Subdivision", subdivision);
+					reasonIntent.putExtra("Binder", binder);
+					reasonIntent.putExtra("AccountNumber", accountNumber);
+					reasonIntent.putExtra("currentreading", editTxt.getText().toString());
+					reasonIntent.putExtra("AccountNumber", accountNumber);
+					reasonIntent.putExtra("PicturePath", pictureFileName);
+					startActivityForResult(reasonIntent, REASON_WHY);
+				}
+				
+				//Log.d("DEEPGOSWAMI", "old reading = " + iOldReading + " new Reading = " + icurrRdng);
+				else
+				{
+					Intent intent = new Intent(getApplicationContext(), ShowBill.class);
+					intent.putExtra("currentreading", editTxt.getText().toString());
+					intent.putExtra("Subdivision", subdivision);
+					intent.putExtra("Binder", binder);
+					if (isPictureTaken)
+						intent.putExtra("PicturePath", pictureFileName);
+					intent.putExtra("AccountNumber", accountNumber);
+					intent.putExtra("ReasonCode", reasonCode);
+					startActivityForResult(intent, SHOW_BILL);
+				}
+				
 				
 			}
 		}
@@ -102,14 +143,29 @@ public class MeterReading extends Activity {
 
 	
 	
+	protected void onActivityResult(int requestCode, int resultCode, Intent data)
+	{
+		if (requestCode == TAKE_PICTURE)
+			if (resultCode == RESULT_OK)
+				isPictureTaken = true;
+		if (requestCode == REASON_WHY)
+			if (resultCode == RESULT_OK)
+			{
+				reasonWhy = data.getIntExtra("ReasonCode", 0);
+				isPictureTaken = false;
+			}
+				
+			
+	}
+	
 	
 	
 	private String[] getDetailsFromDB() 
 	{
 		DbHelper dbHelper = new DbHelper(getApplicationContext());
-		String[] columnList = {"NAME", "ADDR1", "ADDR2", "ADDR3"};
+		String[] columnList = {"NAME", "ADDR1", "ADDR2", "ADDR3", "OPNRDG"};
 		String query = "BINDER =" + "\'" + binder +"\'" + "AND ACC_NO =" + "\'" + accountNumber + "\'";
-		String[] displayDetails = new String[4];
+		String[] displayDetails = new String[5];
 		
 		SQLiteDatabase theDb = dbHelper.getReadableDatabase();
 		Cursor theCursor = theDb.query("METER_TABLE", columnList, query, null, null, null, null);
@@ -120,6 +176,7 @@ public class MeterReading extends Activity {
 			displayDetails[1] = theCursor.getString(1);
 			displayDetails[2] = theCursor.getString(2);
 			displayDetails[3] = theCursor.getString(3);
+			displayDetails[4] = theCursor.getString(4);
 			theCursor.close();
 			dbHelper.close();
 			return displayDetails;
@@ -131,6 +188,8 @@ public class MeterReading extends Activity {
 		dbHelper.close();
 		return null;
 	}
+	
+	
 	
 	
 	

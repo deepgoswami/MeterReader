@@ -57,6 +57,10 @@
             android:name="commgate.in.meterreader.MeterReading"
             android:label="@string/title_activity_meter_reading" >
         </activity>
+        <activity
+            android:name="commgate.in.meterreader.ChooseReadingReason"
+            android:label="@string/title_activity_choose_reading_reason" >
+        </activity>
     </application>
 
     <uses-permission android:name="android.permission.BLUETOOTH" >

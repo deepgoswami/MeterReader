@@ -22,5 +22,6 @@
     <string name="title_activity_choose_consumer_number">ChooseConsumerNumber</string>
     <string name="title_activity_show_bill">ShowBill</string>
     <string name="title_activity_meter_reading">MeterReading</string>
+    <string name="title_activity_choose_reading_reason">ChooseReadingReason</string>
 
 </resources>

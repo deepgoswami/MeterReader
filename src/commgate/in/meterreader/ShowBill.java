@@ -98,6 +98,9 @@ public class ShowBill extends Activity
 	double rcptAmt1 = 0.0;
 	
 	String photoPath = null;
+	int reasonCode;
+	int newCurrReading = 0;
+	int newPrevReading = 0;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) 
@@ -113,7 +116,12 @@ public class ShowBill extends Activity
 		Intent fromPrevious = getIntent();
 		AccountNum = fromPrevious.getStringExtra("AccountNumber");
 		photoPath = fromPrevious.getStringExtra("PicturePath");
+		reasonCode = fromPrevious.getIntExtra("ReasonCode", -1);
 		Log.d(TAG, "Photo Path = " + photoPath);
+		
+		
+		
+		
 		
 		String query = "ACC_NO =" + "\'" + AccountNum + "\'";
 		
@@ -125,6 +133,7 @@ public class ShowBill extends Activity
 		
 		if (theCursor.moveToFirst())
 		{
+			
 			consRef = theCursor.getString(0);
 			billMonth = theCursor.getInt(1);
 			sdoCd = theCursor.getString(2);
@@ -159,6 +168,7 @@ public class ShowBill extends Activity
 			prevRdng = Integer.parseInt(temp);
 			prevRdngDate = theCursor.getString(17);
 			prevRdngStatus = theCursor.getString(18);
+			
 			temp = theCursor.getString(19);
 			ilrdg = Integer.parseInt(temp);
 			
@@ -180,13 +190,15 @@ public class ShowBill extends Activity
 			rcptBookNo1 = theCursor.getString(27);
 			
 			temp = theCursor.getString(28);
-			try {
-				rcptNo1 = Double.valueOf(temp);
-			}
-			catch (NumberFormatException ne)
+			if (temp != null)
 			{
-				Log.d(TAG, "rcptNo1 " + ne.toString());
-				
+				try {
+					rcptNo1 = Double.valueOf(temp);
+				}
+				catch (NumberFormatException ne)
+				{
+					Log.d(TAG, "rcptNo1 " + ne.toString());
+				}
 			}
 			
 			temp = theCursor.getString(29);
@@ -209,7 +221,7 @@ public class ShowBill extends Activity
 		fromPrevious = getIntent();
 		strCurrRdng = fromPrevious.getStringExtra("currentreading");
 		
-		currRdng = Integer.parseInt(strCurrRdng);
+		
 		
 		TextView theTextView = (TextView) findViewById(R.id.divisionTxt);
 		theTextView.setText("BEHRAMPUR-II");
@@ -279,10 +291,11 @@ public class ShowBill extends Activity
 		
 		currRdng = Integer.parseInt(strCurrRdng);
 		
-		
-		
-		CalculateTariff ct = new CalculateTariff(prevRdng,
-				currRdng, trf_cd,
+		newCurrReading = getCurrentReading();
+		newPrevReading = getPreviousReading();
+		Log.d(TAG, "newCurrReading " + newCurrReading + " new Prev " + newPrevReading);
+		CalculateTariff ct = new CalculateTariff(newPrevReading,
+				newCurrReading, trf_cd,
 				getApplicationContext());
 		
 		energyCharge = ct.calculateEnergyCharge();
@@ -472,6 +485,56 @@ public class ShowBill extends Activity
 		
 
 	
+
+	private int getCurrentReading() 
+	{
+		currRdng = Integer.parseInt(strCurrRdng);
+		
+		if ((reasonCode == 5)) // Meter Faulty
+		{
+			Log.d(TAG, "Meter Faulty");
+			return currRdng;
+		}
+		
+		if (reasonCode == 6) //Round Complete
+		{
+			Log.d(TAG, "Round Complete");
+			return currRdng;
+		}
+		if (reasonCode == 7) //Meter Change
+		{
+			Log.d(TAG, "Meter Change");
+			return (int) (flrdg + currRdng);
+		}
+		return currRdng;
+	}
+
+	
+	private int getPreviousReading() 
+	{
+		
+		
+		if ((reasonCode == 5)) // Meter Faulty
+		{
+			Log.d(TAG, "Meter Faulty");
+			return prevRdng;
+		}
+		
+		if (reasonCode == 6) //Round Complete 
+		{
+			Log.d(TAG, "Round Complete");
+			return prevRdng;
+		}
+		if (reasonCode == 7) //Meter Change
+		{
+			Log.d(TAG, "Meter Change");
+			return (int) (prevRdng + ilrdg);
+		}
+		return prevRdng;
+	}
+
+
+
 
 	private String getDate() {
 		SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy HH:mm");
