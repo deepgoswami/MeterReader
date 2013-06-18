@@ -50,6 +50,22 @@ public class ChooseAction extends Activity {
 		);
 		
 		
+		Button btnUpload = (Button) findViewById(R.id.btnUpload);
+
+		
+		btnUpload.setOnClickListener(new OnClickListener()
+		{
+			
+			@Override
+			public void onClick(View v)
+			{
+				
+				FileSaver fileSaver = new FileSaver(getApplicationContext());
+				fileSaver.saveFile();
+			}
+		}
+		);
+		
 	}
 
 	@Override
