@@ -52,18 +52,20 @@ public class FileSaver
 		
 		List<String[]> theList = new ArrayList<String[]>();
 		
-		String[] row = new String[numColumns];
+		String[] row;
 		
 		if (theCursor.moveToFirst())
 		{
 			while (theCursor.moveToNext())
 			{
+				row = new String[numColumns];
 				for (int i = 0; i < numColumns; i++)
 				{
 					row[i] = theCursor.getString(i);
 					
 				}
 				theList.add(row);
+				Log.d(TAG, "Added Row: " + row[0]);
 			}
 			theCsv.writeAll(theList);
 		}

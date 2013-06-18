@@ -162,30 +162,99 @@ public class ShowBill extends Activity
 			catch (NumberFormatException ne)
 			{
 				Log.d(TAG, ne.toString());
-				Log.d(TAG,"String value was: " + temp);
+				Log.d(TAG,"String value of mf was: " + temp);
+				mf = 0;
 			}
 			temp = theCursor.getString(16);
-			prevRdng = Integer.parseInt(temp);
+			try {
+				prevRdng = Integer.parseInt(temp);
+			}
+			catch (NumberFormatException ne)
+			{
+				Log.d(TAG, ne.toString());
+				Log.d(TAG,"String value of prevRdng was: " + temp);
+			}
 			prevRdngDate = theCursor.getString(17);
 			prevRdngStatus = theCursor.getString(18);
 			
 			temp = theCursor.getString(19);
-			ilrdg = Integer.parseInt(temp);
+			try {
+				ilrdg = Integer.parseInt(temp);
+			}
+			catch (NumberFormatException ne)
+			{
+				Log.d(TAG, ne.toString());
+				Log.d(TAG,"String value of ilrdg was: " + temp);
+				ilrdg = 0;
+			}
 			
 			temp = theCursor.getString(20);
-			flrdg = Integer.parseInt(temp);
+			try {
+				flrdg = Integer.parseInt(temp);
+			}
+			catch (NumberFormatException ne)
+			{
+				Log.d(TAG, ne.toString());
+				Log.d(TAG,"String value of flrdg was: " + temp);
+				flrdg = 0;
+			}
+			
+			
 			temp = theCursor.getString(21);
-			currentSurcharge = Double.valueOf(temp);
+			
+			try {
+				currentSurcharge = Double.valueOf(temp);
+			}
+			catch (NumberFormatException ne)
+			{
+				Log.d(TAG, ne.toString());
+				Log.d(TAG,"String value of currentSurcharge was: " + temp);
+				currentSurcharge = 0.0;
+			}
+			
 			temp = theCursor.getString(22);
-			adjustable_bd = Double.valueOf(temp);
+			try {
+				adjustable_bd = Double.valueOf(temp);
+			}
+			catch (NumberFormatException ne)
+			{
+				Log.d(TAG, ne.toString());
+				Log.d(TAG,"String value of adjustable_bd was: " + temp);
+				adjustable_bd = 0.0;
+			}
+			
 			temp = theCursor.getString(23);
+			try {
 			adjustable_ed = Double.valueOf(temp);
+			}
+			catch (NumberFormatException ne)
+			{
+				Log.d(TAG, ne.toString());
+				Log.d(TAG,"String value of adjustable_ed was: " + temp);
+				adjustable_ed = 0.0;
+			}
+			
 			temp = theCursor.getString(24);
-			adjustable_dps = Double.valueOf(temp);
+			try {
+				adjustable_dps = Double.valueOf(temp);
+			}
+			catch (NumberFormatException ne)
+			{
+				Log.d(TAG, ne.toString());
+				Log.d(TAG,"String value of adjustable_dps was: " + temp);
+				adjustable_dps = 0.0;
+			}
 			
 			temp = theCursor.getString(25);
-			securityAmt = Double.valueOf(temp);
-			
+			try {
+				securityAmt = Double.valueOf(temp);
+			}
+			catch (NumberFormatException ne)
+			{
+				Log.d(TAG, ne.toString());
+				Log.d(TAG,"String value of securityAmt was: " + temp);
+				securityAmt = 0.0;
+			}
 			payDt1 = theCursor.getString(26);
 			rcptBookNo1 = theCursor.getString(27);
 			
@@ -197,7 +266,9 @@ public class ShowBill extends Activity
 				}
 				catch (NumberFormatException ne)
 				{
-					Log.d(TAG, "rcptNo1 " + ne.toString());
+					Log.d(TAG, ne.toString());
+					Log.d(TAG,"String value of rcptNo1 was: " + temp);
+					rcptNo1 = 0.0;
 				}
 			}
 			
@@ -291,11 +362,9 @@ public class ShowBill extends Activity
 		
 		currRdng = Integer.parseInt(strCurrRdng);
 		
-		newCurrReading = getCurrentReading();
-		newPrevReading = getPreviousReading();
-		Log.d(TAG, "newCurrReading " + newCurrReading + " new Prev " + newPrevReading);
-		CalculateTariff ct = new CalculateTariff(newPrevReading,
-				newCurrReading, trf_cd,
+		
+		CalculateTariff ct = new CalculateTariff(prevRdng,
+				currRdng, trf_cd, reasonCode, flrdg, ilrdg,
 				getApplicationContext());
 		
 		energyCharge = ct.calculateEnergyCharge();
@@ -304,7 +373,7 @@ public class ShowBill extends Activity
 		theTextView.setText(String.valueOf(df.format(energyCharge)));
 		
 		
-		billUnits = currRdng - prevRdng;
+		billUnits = ct.unitsConsumed();
 		
 		theTextView = (TextView) findViewById(R.id.billUnitsTxt);
 		theTextView.setText(String.valueOf(billUnits));
@@ -379,6 +448,7 @@ public class ShowBill extends Activity
 				OutputDataBean odb = new OutputDataBean(getApplicationContext());
 				Log.d(TAG, "OnClick");
 				odb.setCONS_REF(consRef);
+				Log.d(TAG, "Consumer Ref = " + consRef);
 				odb.setSDO_CD(sdoCd);
 				odb.setBINDER(binder);
 				odb.setACC_NO(acc_no);

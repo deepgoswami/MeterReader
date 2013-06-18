@@ -41,7 +41,7 @@ public class CalculateTariff
 
 	private String TAG = "DEEPGOSWAMI";
 	
-	public CalculateTariff(int old, int current, String strTrfCode, Context ctx)
+	public CalculateTariff(int old, int current, String strTrfCode, int reasonCode, double flrdg, double ilrdg, Context ctx)
 	{
 		oldReading = old;
 		newReading = current;
@@ -52,13 +52,28 @@ public class CalculateTariff
 			tariffCode = 0;
 		if (strTrfCode.equals("2000"))
 			tariffCode = 1;
-		unitsConsumed = newReading - oldReading;
-		if (unitsConsumed < 0)
+		if (reasonCode == 7)
 		{
-			Toast.makeText(ctx, "Error: Old reading greater than new reading", Toast.LENGTH_SHORT).show();
-			return;
+			if ((flrdg - old) < 0)
+				unitsConsumed = (int) (current - ilrdg);
+			else
+				unitsConsumed = (int)((flrdg - old) + (current - ilrdg));
+			
 		}
+		else
+			unitsConsumed = newReading - oldReading;
+		
 	}
+	
+	
+	
+	
+	
+	public int unitsConsumed()
+	{
+		return unitsConsumed;
+	}
+	
 	
 	
 	
