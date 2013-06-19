@@ -11,6 +11,7 @@ import android.widget.Button;
 
 public class ChooseAction extends Activity {
 
+	String[] binderList = new String[100];
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -44,7 +45,8 @@ public class ChooseAction extends Activity {
 				/*Intent intent = new Intent(getApplicationContext(), FileDownload.class);
 				startActivity(intent);*/
 				FileParser fp = new FileParser(getApplicationContext());
-				fp.readFile();
+				fp.readFile(binderList);
+				
 			}
 		}
 		);

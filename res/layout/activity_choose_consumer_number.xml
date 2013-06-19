@@ -25,43 +25,6 @@
         android:text=""
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
-    <EditText
-        android:id="@+id/accountNumtxt"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/subDivisionTxt"
-        android:layout_below="@+id/textView3"
-        android:inputType="number"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/subDivisionTxt"
-        android:layout_below="@+id/subDivisionTxt"
-        android:layout_marginTop="28dp"
-        android:text="Binder"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <TextView
-        android:id="@+id/binderTxt"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView2"
-        android:layout_below="@+id/textView2"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/binderTxt"
-        android:layout_below="@+id/binderTxt"
-        android:layout_marginTop="20dp"
-        android:text="Account Number"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
     <Button
         android:id="@+id/btnNext"
         android:layout_width="wrap_content"
@@ -70,5 +33,42 @@
         android:layout_below="@+id/accountNumtxt"
         android:layout_marginTop="75dp"
         android:text="Next >" />
+
+    <EditText
+        android:id="@+id/accountNumtxt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView3"
+        android:layout_below="@+id/spinner1"
+        android:layout_marginTop="74dp"
+        android:ems="10"
+        android:inputType="number"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <Spinner
+        android:id="@+id/spinner1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/subDivisionTxt"
+        android:layout_below="@+id/subDivisionTxt" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/subDivisionTxt"
+        android:layout_below="@+id/spinner1"
+        android:text="Binder"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView2"
+        android:layout_below="@+id/textView2"
+        android:layout_marginTop="32dp"
+        android:text="Account Number"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
 </RelativeLayout>

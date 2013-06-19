@@ -3,6 +3,10 @@ package commgate.in.meterreader;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
+
 import android.database.SQLException;
 import android.database.sqlite.*;
 import android.os.Environment;
@@ -17,6 +21,9 @@ public class FileParser
 {
 	Context theContext;
 	SQLiteDatabase theDb;
+	private static Set<String> binderSet = new HashSet<String>();
+	
+	
 	
 	public FileParser(Context ctx)
 	{
@@ -25,7 +32,7 @@ public class FileParser
 	
 	
 	
-	public void readFile()
+	public void readFile(String[] binderList)
 	{
 		String fileName = getFileName();
 		CSVReader theReader = null;
@@ -33,17 +40,28 @@ public class FileParser
 		try
 		{
 			theReader = new CSVReader(new FileReader(fileName));
+			
 			while ((csvLine = theReader.readNext()) != null)
 			{
 				loadIntoDB(csvLine);
+				binderSet.add(csvLine[3]);
 			}
+			
+			Iterator<String> it = binderSet.iterator();
+			int i = 0;
+			while (it.hasNext())
+				binderList[i++] = (String) it.next();
+			Log.d("DEEPGOSWAMI", "File Parser: binderList " + binderList[0]);
 		}
 		catch (IOException ie)
 		{
 			Log.e("DEEPGOSWAMI", "Error Opening File: " + ie.toString());
+			
 		}
 		finally
 		{
+			
+			
 			try {
 				theReader.close();
 			} 
@@ -51,6 +69,7 @@ public class FileParser
 				Log.e("DEEPGOSWAMI", "Error Closing Input File: " + e.toString());
 			}
 		}
+		
 		
 		
 			
@@ -64,7 +83,7 @@ public class FileParser
 	{
 		String fileName = Environment.getExternalStorageDirectory().getAbsolutePath();
 		fileName = fileName + "/commgate/input.txt";
-		Log.i("DEEPGOSWAMI", "filename = " + fileName);
+		
 		return fileName;
 	}
 
@@ -152,6 +171,7 @@ public class FileParser
 		try {
 			fos = theContext.openFileOutput(internalFileName, Context.MODE_PRIVATE);
 			fos.write(csvLine[2].getBytes());
+			
 			fos.write(",".getBytes());
 			fos.write(csvLine[3].getBytes());
 			fos.write(",".getBytes());
