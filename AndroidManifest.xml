@@ -61,6 +61,14 @@
             android:name="commgate.in.meterreader.ChooseReadingReason"
             android:label="@string/title_activity_choose_reading_reason" >
         </activity>
+        <activity
+            android:name="commgate.in.meterreader.BTWrapperActivity"
+            android:label="@string/title_activity_btwrapper" >
+        </activity>
+        <activity
+            android:name="commgate.in.meterreader.PrintScreen"
+            android:label="@string/title_activity_print_screen" >
+        </activity>
     </application>
 
     <uses-permission android:name="android.permission.BLUETOOTH" >
@@ -69,5 +77,6 @@
     </uses-permission>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-	<uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
 </manifest>

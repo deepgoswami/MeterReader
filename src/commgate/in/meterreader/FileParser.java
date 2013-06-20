@@ -39,10 +39,11 @@ public class FileParser
 		String[] csvLine = null;
 		try
 		{
-			theReader = new CSVReader(new FileReader(fileName));
+			theReader = new CSVReader(new FileReader(fileName), '|');
 			
 			while ((csvLine = theReader.readNext()) != null)
 			{
+				Log.d("DEEPGOSWAMI", "CsvLine = " + csvLine.toString());
 				loadIntoDB(csvLine);
 				binderSet.add(csvLine[3]);
 			}

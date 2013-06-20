@@ -23,5 +23,7 @@
     <string name="title_activity_show_bill">ShowBill</string>
     <string name="title_activity_meter_reading">MeterReading</string>
     <string name="title_activity_choose_reading_reason">ChooseReadingReason</string>
+    <string name="title_activity_btwrapper">BTWrapperActivity</string>
+    <string name="title_activity_print_screen">PrintScreen</string>
 
 </resources>

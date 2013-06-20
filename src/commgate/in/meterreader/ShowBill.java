@@ -1,5 +1,7 @@
 package commgate.in.meterreader;
 
+import java.io.IOException;
+import java.io.OutputStream;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -9,7 +11,9 @@ import java.util.Map;
 
 import android.os.Bundle;
 import android.os.Environment;
+import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.bluetooth.BluetoothSocket;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -25,11 +29,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 import commgate.in.meterreader.DbHelper;
 
+@SuppressLint("SimpleDateFormat")
 public class ShowBill extends Activity 
 {
 	private static String TAG = "DEEPGOSWAMI";
 	SQLiteDatabase theDb = null;
 	DecimalFormat df = new DecimalFormat("#.##");
+	OutputDataBean odb = null;
+	private static BluetoothSocket mbtSocket;
+	private static OutputStream mbtOutputStream;
+	private static Activity theActivity;
 	
 	String consRef = null;
 	int billMonth = 0;
@@ -102,6 +111,8 @@ public class ShowBill extends Activity
 	int newCurrReading = 0;
 	int newPrevReading = 0;
 	
+	int[] levels;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) 
 	{
@@ -110,11 +121,13 @@ public class ShowBill extends Activity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_show_bill);
 
+		theActivity = this;
 		DbHelper dbHelper = new DbHelper(getApplicationContext());
 		theDb = dbHelper.getReadableDatabase();
 		
 		Intent fromPrevious = getIntent();
 		AccountNum = fromPrevious.getStringExtra("AccountNumber");
+		String thebinder = fromPrevious.getStringExtra("Binder");
 		photoPath = fromPrevious.getStringExtra("PicturePath");
 		reasonCode = fromPrevious.getIntExtra("ReasonCode", -1);
 		Log.d(TAG, "Photo Path = " + photoPath);
@@ -123,7 +136,7 @@ public class ShowBill extends Activity
 		
 		
 		
-		String query = "ACC_NO =" + "\'" + AccountNum + "\'";
+		String query = "BINDER =" + "\'" + thebinder +"\'" + "AND ACC_NO =" + "\'" + AccountNum + "\'";;
 		
 		
 		String temp = null;
@@ -378,7 +391,7 @@ public class ShowBill extends Activity
 		theTextView = (TextView) findViewById(R.id.billUnitsTxt);
 		theTextView.setText(String.valueOf(billUnits));
 		
-		int[] levels = new int[4];
+		levels = new int[4];
 		levels = ct.getLevelUnits();
 		theTextView = (TextView) findViewById(R.id.slab1Txt);
 		theTextView.setText(String.valueOf(levels[0]));
@@ -445,7 +458,7 @@ public class ShowBill extends Activity
 			@Override
 			public void onClick(View view) 
 			{
-				OutputDataBean odb = new OutputDataBean(getApplicationContext());
+				odb = new OutputDataBean(getApplicationContext());
 				Log.d(TAG, "OnClick");
 				odb.setCONS_REF(consRef);
 				Log.d(TAG, "Consumer Ref = " + consRef);
@@ -543,8 +556,69 @@ public class ShowBill extends Activity
 				
 				odb.writeToDB();
 				
-				Intent intent = new Intent(getApplicationContext(), ChooseConsumerNumber.class);
+				
+				Intent intent = new Intent(getApplicationContext(), PrintScreen.class);
+				
+				intent.putExtra("NewAcNo", sdoCd + binder + acc_no);
+				intent.putExtra("ConsRef", consRef);
+				intent.putExtra("BillPeriod", "");
+				intent.putExtra("Date", getDate());
+				intent.putExtra("old_ac_no", old_ac_no);
+				
+				intent.putExtra("name", name);
+				intent.putExtra("addr1", addr1);
+				intent.putExtra("addr1", addr1);
+				intent.putExtra("addr2", addr2);
+				intent.putExtra("addr3", addr3);
+				
+				intent.putExtra("consumerStatus", prevRdngStatus);
+				intent.putExtra("securityAmt", String.valueOf(securityAmt));
+				intent.putExtra("category",category );
+				intent.putExtra("trf_cd", trf_cd);
+				intent.putExtra("connectionLoad", String.valueOf(connectionLoad));
+				
+				intent.putExtra("mf", String.valueOf(mf));
+				intent.putExtra("prevRdng", String.valueOf(prevRdng));
+				intent.putExtra("prevRdngDate", prevRdngDate);
+				intent.putExtra("prevRdngStatus", prevRdngStatus);
+				intent.putExtra("flrdg", String.valueOf(flrdg));
+				
+				intent.putExtra("ilrdg", String.valueOf(ilrdg));
+				intent.putExtra("currRdng", String.valueOf(currRdng));
+				intent.putExtra("currRdngDt", getDate());
+				intent.putExtra("meterNo", meterNo);
+				String meterOwner = " ";
+				if (meterRent == 0.0)
+					meterOwner = "Consumer";
+				intent.putExtra("meterOwner", meterOwner);
+		
+				intent.putExtra("billBasis", "ACTUAL");
+				intent.putExtra("billUnits", String.valueOf(df.format(billUnits)));
+				intent.putExtra("slab1", String.valueOf(levels[0]));
+				intent.putExtra("slab2", String.valueOf(levels[1]));
+				intent.putExtra("slab3", String.valueOf(levels[2]));
+				intent.putExtra("slab4", String.valueOf(levels[3]));
+				
+				intent.putExtra("energyCharge", String.valueOf(df.format(energyCharge)));
+				intent.putExtra("fixChg", String.valueOf(df.format(fixChg)));
+				intent.putExtra("meterRent", String.valueOf(df.format(meterRent)));
+				intent.putExtra("elecDuty", String.valueOf(df.format(elecDuty)));
+				intent.putExtra("dps", " ");
+				
+				intent.putExtra("presentBillAmt", String.valueOf(df.format(presentBillAmt)));
+				intent.putExtra("adjAmount", String.valueOf(df.format(adjAmount)));
+				intent.putExtra("sundryAdj", String.valueOf(df.format(sundryAdj)));
+				intent.putExtra("afterDueAmt", String.valueOf(df.format(afterDueAmt)));
+				intent.putExtra("rebate", String.valueOf(df.format(rebate)));
+				intent.putExtra("byDueAmt", String.valueOf(df.format(byDueAmt)));
+				
 				startActivity(intent);
+				
+				
+				
+				
+				/*Intent intent = new Intent(getApplicationContext(), ChooseConsumerNumber.class);
+				startActivity(intent);*/
 			}
 			
 		}
@@ -554,6 +628,62 @@ public class ShowBill extends Activity
 		
 		
 
+	
+	protected void startBluetoothConnection() 
+	{
+		Log.d(TAG, "In startBluetoothConnection()");
+		if(mbtSocket == null)
+		{
+			Intent BTIntent = new Intent(getApplicationContext(), BTWrapperActivity.class);
+			Log.d(TAG, "before  startActivityForResult");
+			startActivityForResult(BTIntent, BTWrapperActivity.REQUEST_CONNECT_BT);
+		}
+		else
+		{
+			
+			OutputStream tmpOut = null;
+			try {
+				tmpOut = mbtSocket.getOutputStream();
+			} 
+			catch (IOException e) 
+			{ 
+				e.printStackTrace();
+			}
+			mbtOutputStream = tmpOut;
+		}
+
+	}
+	
+	
+	
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) 
+	{
+		super.onActivityResult(requestCode, resultCode, data);
+		Log.d(TAG, "in onActivityResult");
+		switch(requestCode) {
+
+		case BTWrapperActivity.REQUEST_CONNECT_BT:
+
+			try 
+			{
+				mbtSocket = BTWrapperActivity.getSocket();
+				PrintData pd = new PrintData(getApplicationContext(), odb, mbtOutputStream, theActivity);
+				pd.startPrinting(mbtOutputStream);
+				
+			} 
+			catch (Exception e) 
+			{
+				e.printStackTrace();
+			}
+
+			break;
+		}
+
+	}
+	
+	
 	
 
 	private int getCurrentReading() 
@@ -611,7 +741,13 @@ public class ShowBill extends Activity
 		Date date = new Date();
 		return (df.format(date));
 	}
+	
+	
+	
+	
+	
 
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.

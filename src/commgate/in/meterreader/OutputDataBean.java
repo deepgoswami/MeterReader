@@ -689,6 +689,386 @@ public class OutputDataBean
 	public void setTheValues(ContentValues theValues) {
 		this.theValues = theValues;
 	}
+
+
+	public static String getTAG() {
+		return TAG;
+	}
+
+
+	public String getCONS_REF() {
+		return CONS_REF;
+	}
+
+
+	public String getSDO_CD() {
+		return SDO_CD;
+	}
+
+
+	public String getBINDER() {
+		return BINDER;
+	}
+
+
+	public String getACC_NO() {
+		return ACC_NO;
+	}
+
+
+	public String getMETERNO() {
+		return METERNO;
+	}
+
+
+	public String getMTRINSTL_DATE() {
+		return MTRINSTL_DATE;
+	}
+
+
+	public String getMETERTYPE() {
+		return METERTYPE;
+	}
+
+
+	public String getMF() {
+		return MF;
+	}
+
+
+	public String getINITIAL_RED() {
+		return INITIAL_RED;
+	}
+
+
+	public String getFINAL_RED_OLDMETER() {
+		return FINAL_RED_OLDMETER;
+	}
+
+
+	public String getOLDMETER_STAT() {
+		return OLDMETER_STAT;
+	}
+
+
+	public String getCSTS_CD() {
+		return CSTS_CD;
+	}
+
+
+	public String getCUR_METER_STAT() {
+		return CUR_METER_STAT;
+	}
+
+
+	public String getCURRRDG() {
+		return CURRRDG;
+	}
+
+
+	public String getCUR_RED_DT() {
+		return CUR_RED_DT;
+	}
+
+
+	public String getBILLING_DEMAND() {
+		return BILLING_DEMAND;
+	}
+
+
+	public String getNEW_TRF_CD() {
+		return NEW_TRF_CD;
+	}
+
+
+	public String getBILL_UNITS() {
+		return BILL_UNITS;
+	}
+
+
+	public String getENGCHG() {
+		return ENGCHG;
+	}
+
+
+	public String getFIXCHG() {
+		return FIXCHG;
+	}
+
+
+	public String getMETERRENT() {
+		return METERRENT;
+	}
+
+
+	public String getED() {
+		return ED;
+	}
+
+
+	public String getNEWBD() {
+		return NEWBD;
+	}
+
+
+	public String getNEWED() {
+		return NEWED;
+	}
+
+
+	public String getNEWDPS() {
+		return NEWDPS;
+	}
+
+
+	public String getNEWOTH() {
+		return NEWOTH;
+	}
+
+
+	public String getREFBLUNITS() {
+		return REFBLUNITS;
+	}
+
+
+	public String getREFBLBD() {
+		return REFBLBD;
+	}
+
+
+	public String getREFBLED() {
+		return REFBLED;
+	}
+
+
+	public String getREFBLDPS() {
+		return REFBLDPS;
+	}
+
+
+	public String getREFDEDUNITS() {
+		return REFDEDUNITS;
+	}
+
+
+	public String getREFDEDBD() {
+		return REFDEDBD;
+	}
+
+
+	public String getREFDEDED() {
+		return REFDEDED;
+	}
+
+
+	public String getREFDEDDPS() {
+		return REFDEDDPS;
+	}
+
+
+	public String getREB_OFF() {
+		return REB_OFF;
+	}
+
+
+	public String getNETBEFDUEDT() {
+		return NETBEFDUEDT;
+	}
+
+
+	public String getNETAFTDUEDT() {
+		return NETAFTDUEDT;
+	}
+
+
+	public String getBILLBASIS() {
+		return BILLBASIS;
+	}
+
+
+	public String getNOOFMONTHS() {
+		return NOOFMONTHS;
+	}
+
+
+	public String getREB_DT() {
+		return REB_DT;
+	}
+
+
+	public String getISSUE_DT() {
+		return ISSUE_DT;
+	}
+
+
+	public String getBILLPERIOD() {
+		return BILLPERIOD;
+	}
+
+
+	public String getBILLSERIALNO() {
+		return BILLSERIALNO;
+	}
+
+
+	public String getOLDCSTS_CD() {
+		return OLDCSTS_CD;
+	}
+
+
+	public String getBILL_MTH() {
+		return BILL_MTH;
+	}
+
+
+	public String getREMARKS() {
+		return REMARKS;
+	}
+
+
+	public String getMACHINE_SRL_NO() {
+		return MACHINE_SRL_NO;
+	}
+
+
+	public String getMTR_READER_ID() {
+		return MTR_READER_ID;
+	}
+
+
+	public String getMTR_READER_NAME() {
+		return MTR_READER_NAME;
+	}
+
+
+	public String getREB_OYT() {
+		return REB_OYT;
+	}
+
+
+	public String getREB_RTSWHT() {
+		return REB_RTSWHT;
+	}
+
+
+	public String getDOM_SPLREB() {
+		return DOM_SPLREB;
+	}
+
+
+	public String getENGCHG_OLDTRF() {
+		return ENGCHG_OLDTRF;
+	}
+
+
+	public String getFIXCHG_OLDTRF() {
+		return FIXCHG_OLDTRF;
+	}
+
+
+	public String getED_OLDTRF() {
+		return ED_OLDTRF;
+	}
+
+
+	public String getNEWBD_OLDTRF() {
+		return NEWBD_OLDTRF;
+	}
+
+
+	public String getNEWED_OLDTRF() {
+		return NEWED_OLDTRF;
+	}
+
+
+	public String getNEWDPS_OLDTRF() {
+		return NEWDPS_OLDTRF;
+	}
+
+
+	public String getNEWOTH_OLDTRF() {
+		return NEWOTH_OLDTRF;
+	}
+
+
+	public String getREFBLBD_OLDTRF() {
+		return REFBLBD_OLDTRF;
+	}
+
+
+	public String getREFBLED_OLDTRF() {
+		return REFBLED_OLDTRF;
+	}
+
+
+	public String getREFBLDPS_OLDTRF() {
+		return REFBLDPS_OLDTRF;
+	}
+
+
+	public String getREFDEDBD_OLDTRF() {
+		return REFDEDBD_OLDTRF;
+	}
+
+
+	public String getREFDEDED_OLDTRF() {
+		return REFDEDED_OLDTRF;
+	}
+
+
+	public String getREFDEDDPS_OLDTRF() {
+		return REFDEDDPS_OLDTRF;
+	}
+
+
+	public String getREB_OFF_OLDTRF() {
+		return REB_OFF_OLDTRF;
+	}
+
+
+	public String getNETBEFDUEDT_OLDTRF() {
+		return NETBEFDUEDT_OLDTRF;
+	}
+
+
+	public String getNETAFTDUEDT_OLDTRF() {
+		return NETAFTDUEDT_OLDTRF;
+	}
+
+
+	public String getREB_HOSTEL() {
+		return REB_HOSTEL;
+	}
+
+
+	public String getMAX_DEMD() {
+		return MAX_DEMD;
+	}
+
+
+	public String getRECONN_CHARGE() {
+		return RECONN_CHARGE;
+	}
+
+
+	public String getDUE_DATE() {
+		return DUE_DATE;
+	}
+
+
+	public String getPathToPhoto() {
+		return pathToPhoto;
+	}
+
+
+	public ContentValues getTheValues() {
+		return theValues;
+	}
+
+
+	public Context getTheContext() {
+		return theContext;
+	}
 	
 	
 }
